@@ -36,4 +36,17 @@ public class categoryTest {
         assertEquals(category, "Your category is Overweight", "Категория неверная");
         browser.quit();
     }
+
+    @Test
+    public void categoryStarvation() {
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        WebDriver browser = new ChromeDriver();
+        browser.get("https://healthunify.com/bmicalculator/");
+        browser.findElement(By.name("wg")).sendKeys("40");
+        browser.findElement(By.name("ht")).sendKeys("165");
+        browser.findElement(By.name("cc")).click();
+        String category = browser.findElement(By.name("desc")).getAttribute("value");
+        assertEquals(category, "Your category is Starvation", "Категория неверная");
+        browser.quit();
+    }
 }
